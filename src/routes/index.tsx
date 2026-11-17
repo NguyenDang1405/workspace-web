@@ -3,6 +3,7 @@ import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { AppLayout } from '@/components/layout/app-layout';
 import { LoginPage } from '@/features/auth/login-page';
 import { RegisterPage } from '@/features/auth/register-page';
+import { SplitAuthPage } from '@/features/auth/split-auth-page';
 import { ProjectListPage } from '@/features/projects/project-list-page';
 import { KanbanPage } from '@/features/projects/kanban-page';
 import { TeamListPage } from '@/features/teams/team-list-page';
@@ -17,6 +18,10 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
 };
 
 export const router = createBrowserRouter([
+  {
+    path: '/auth',
+    element: <SplitAuthPage />,
+  },
   {
     path: '/login',
     element: <LoginPage />,
