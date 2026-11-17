@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --workspace-bg: #F8FAFC;
+    --sidebar-bg: #F1F5F9;
+    --card-bg: #FFFFFF;
+    --border-color: #E2E8F0;
+    --text-main: #0F172A;
+    --text-secondary: #64748B;
+    --royal-indigo: #4F46E5;
+    --rose-crimson: #BE123C;
+    --teal-success: #0D9488;
+    --electric-cyan: #06B6D4;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Roboto', ui-sans-serif, system-ui, sans-serif;
+    background-color: var(--workspace-bg);
+    color: var(--text-main);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Engineering Specs / Code / Metrics Mono */
+  .font-mono,
+  code,
+  kbd,
+  samp,
+  pre {
+    font-family: 'Roboto Mono', ui-monospace, monospace;
+  }
+}
+
+/* Scrollbar mỏng, thanh lịch theo chuẩn Modern B2B SaaS */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}

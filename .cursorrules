@@ -1,0 +1,6 @@
+# Icon & Brand System Rules
+- Cấm import trực tiếp từ `lucide-react` trong các file UI/Page.
+- Mọi icon bắt buộc phải gọi thông qua `AppIcons` tại `src/components/icons/AppIcons.tsx` với `strokeWidth={1.5}`.
+- Logo hệ thống dùng `<BrandLogoMark />`.
+- Tuyệt đối KHÔNG hardcode bất kỳ URL ảnh Cloudinary nào ở Frontend hay file `.env`.
+- Quản lý Logo động thông qua Backend Cloudinary SDK và API endpoint `/api/system/brand`.
