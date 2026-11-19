@@ -1,34 +1,99 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AppIcons } from '@/components/icons/AppIcons';
 import { User } from '@/types/user';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { SkillEloPage } from './skill-elo-page';
 
 const CURRENT_USER: User = {
   id: 'usr-senior-01',
   email: 'alex.frontend@workspace.vn',
-  full_name: 'Alex Nguyễn',
+  full_name: 'Đặng Hồng Nguyên',
   role: 'LEADER',
-  department: 'FRONTEND',
+  department: 'FULLSTACK',
   level: 'SENIOR',
   skills: [
     'React 18',
     'Vite',
     'TypeScript',
     'Tailwind CSS',
-    'TanStack Query',
-    'React Router v6',
-    'State Management',
-    'Web Accessibility',
+    'AI & Vector RAG',
+    'Thuật Toán DAG & CPM',
+    'Backend Architecture',
+    'DevOps CI/CD',
   ],
   bio_summary:
-    'Senior Frontend Engineer với 6+ năm kinh nghiệm phát triển các ứng dụng web phức tạp. Đam mê tối ưu hóa hiệu năng, xây dựng Design System và tích hợp các giải pháp AI vào công cụ quản lý dự án.',
+    'Senior Full-Stack & AI Systems Engineer với kinh nghiệm phát triển kiến trúc hệ thống phân tán, thuật toán điều phối đồ thị mạng DAG / CPM và tích hợp mô hình ngôn ngữ lớn (LLM/RAG).',
   is_active: true,
 };
 
 export const ProfilePage: React.FC = () => {
+  const [activeTab, setActiveTab] = useState<'OVERVIEW' | 'SKILL_ELO'>('SKILL_ELO');
+
+  if (activeTab === 'SKILL_ELO') {
+    return (
+      <div className="space-y-4">
+        {/* Profile Mode Switcher Pill */}
+        <div className="flex items-center justify-between bg-white border border-[#E2E8F0] p-2.5 rounded-lg shadow-xs">
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setActiveTab('OVERVIEW')}
+              className="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-semibold text-[#64748B] hover:text-[#0F172A] hover:bg-slate-100 transition-colors"
+            >
+              <AppIcons.user size={14} />
+              <span>Tổng Quan Hồ Sơ</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setActiveTab('SKILL_ELO')}
+              className="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-semibold bg-[#4F46E5] text-white shadow-xs"
+            >
+              <AppIcons.target size={14} />
+              <span>Năng Lực & Xếp Hạng Kỹ Thuật (Skill Elo)</span>
+            </button>
+          </div>
+
+          <span className="font-mono text-xs text-[#0D9488] bg-teal-50 border border-teal-200 px-2 py-0.5 rounded">
+            Bayesian Elo (K=24) Active
+          </span>
+        </div>
+
+        <SkillEloPage />
+      </div>
+    );
+  }
+
   return (
     <div className="mx-auto max-w-4xl space-y-6">
+      {/* Profile Mode Switcher Pill */}
+      <div className="flex items-center justify-between bg-white border border-[#E2E8F0] p-2.5 rounded-lg shadow-xs">
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => setActiveTab('OVERVIEW')}
+            className="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-semibold bg-[#4F46E5] text-white shadow-xs"
+          >
+            <AppIcons.user size={14} />
+            <span>Tổng Quan Hồ Sơ</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setActiveTab('SKILL_ELO')}
+            className="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-semibold text-[#64748B] hover:text-[#0F172A] hover:bg-slate-100 transition-colors"
+          >
+            <AppIcons.target size={14} />
+            <span>Năng Lực & Xếp Hạng Kỹ Thuật (Skill Elo)</span>
+          </button>
+        </div>
+
+        <span className="font-mono text-xs text-[#0D9488] bg-teal-50 border border-teal-200 px-2 py-0.5 rounded">
+          Bayesian Elo (K=24) Active
+        </span>
+      </div>
+
       {/* Header Banner Card */}
       <Card className="overflow-hidden border-slate-200">
         <div className="h-32 bg-gradient-to-r from-[#4F46E5] via-indigo-700 to-[#06B6D4]" />
@@ -37,7 +102,7 @@ export const ProfilePage: React.FC = () => {
             <div className="flex items-end gap-4">
               <div className="flex h-24 w-24 items-center justify-center rounded-2xl bg-white p-1 shadow-lg">
                 <div className="flex h-full w-full items-center justify-center rounded-xl bg-[#4F46E5] font-bold text-white text-3xl">
-                  {CURRENT_USER.full_name.charAt(0)}
+                  ĐN
                 </div>
               </div>
               <div className="mb-1">
