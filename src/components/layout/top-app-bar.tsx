@@ -8,47 +8,47 @@ export const TopAppBar: React.FC = () => {
   const location = useLocation();
   const { logout } = useAuth();
 
-  const getBreadcrumbTitle = (pathname: string) => {
-    if (pathname.includes('/projects/demo-1/kanban') || pathname.includes('/kanban')) {
-      return 'Bảng Công Việc (Kanban)';
+  const getBreadcrumbs = (pathname: string) => {
+    if (pathname.includes('/ai-decompose/ingest')) {
+      return { parent: 'Khởi Tạo & Phân Rã AI', current: 'Trung Tâm Nạp Tài Liệu (Document Ingestion Hub)' };
     }
-    if (pathname.includes('/projects')) {
-      return 'Quản Lý Dự Án';
+    if (pathname.includes('/ai-decompose/traceability')) {
+      return { parent: 'Khởi Tạo & Phân Rã AI', current: 'Bước 2: Đối Soát Nguồn Bóc Tách (Traceability Inspector)' };
+    }
+    if (pathname.includes('/ai-decompose/processing')) {
+      return { parent: 'Khởi Tạo & Phân Rã AI', current: 'Bước 3: Ma Trận Xử Lý & Điều Phối AI (Processing Matrix)' };
+    }
+    if (pathname.includes('/ai-decompose/dispatch')) {
+      return { parent: 'Khởi Tạo & Phân Rã AI', current: 'Bước 4: Đối Soát & Phân Bổ Nhân Sự (PM Dispatch)' };
+    }
+    if (pathname.includes('/ai-decompose/personal-roadmap')) {
+      return { parent: 'Khởi Tạo & Phân Rã AI', current: 'Kích Hoạt Lộ Trình Học Tập Cá Nhân' };
     }
     if (pathname.includes('/ai-decompose')) {
-      return 'Khởi Tạo & Phân Rã AI';
+      return { parent: 'Khởi Tạo & Phân Rã AI', current: 'Nạp Tài Liệu Nguồn' };
+    }
+    if (pathname.includes('/projects/demo-1/kanban') || pathname.includes('/kanban')) {
+      return { parent: 'Dự Án', current: 'Bảng Công Việc (Kanban)' };
+    }
+    if (pathname.includes('/projects')) {
+      return { parent: 'Smart Workspace', current: 'Quản Lý Dự Án' };
     }
     if (pathname.includes('/calendar')) {
-      return 'Lịch Biểu Thích Ứng';
+      return { parent: 'Không Gian Cá Nhân', current: 'Lịch Biểu Thích Ứng' };
     }
     if (pathname.includes('/dag-gantt')) {
-      return 'Đồ Thị Mạng DAG & Gantt';
+      return { parent: 'Kế Hoạch & Tiến Độ', current: 'Đồ Thị Mạng DAG & Gantt' };
     }
     if (pathname.includes('/backlog-srs')) {
-      return 'Backlog & Yêu Cầu SRS';
+      return { parent: 'Phân Tích Yêu Cầu', current: 'Backlog & Yêu Cầu SRS' };
     }
     if (pathname.includes('/teams')) {
-      return 'Tổ Chức & Không Gian';
+      return { parent: 'Cơ Cấu Đội Ngũ', current: 'Tổ Chức & Không Gian' };
     }
     if (pathname.includes('/profile')) {
-      return 'Hồ Sơ Năng Lực & Báo Cáo';
+      return { parent: 'Hồ Sơ Cá Nhân', current: 'Hồ Sơ Năng Lực & Báo Cáo' };
     }
-    if (pathname.includes('/admin/monitor')) {
-      return 'Giám Sát Tài Nguyên';
-    }
-    if (pathname.includes('/admin/rbac')) {
-      return 'Phân Quyền RBAC';
-    }
-    if (pathname.includes('/admin/audit')) {
-      return 'Nhật Ký Audit Log';
-    }
-    if (pathname.includes('/admin/rag')) {
-      return 'Thuật Toán & RAG';
-    }
-    if (pathname.includes('/admin/agent')) {
-      return 'Multi-Agent & Prompt';
-    }
-    return 'Không Gian Làm Việc';
+    return { parent: 'Smart Workspace', current: 'Không Gian Làm Việc' };
   };
 
   const handleExportCSV = () => {
@@ -59,10 +59,12 @@ export const TopAppBar: React.FC = () => {
     <header className="sticky top-0 z-20 flex h-14 w-full items-center justify-between border-b border-[#E2E8F0] bg-white px-6">
       {/* Left: Breadcrumbs */}
       <div className="flex items-center gap-2 text-xs text-[#64748B]">
-        <span className="hover:text-[#0F172A] cursor-pointer transition-colors">Smart Workspace</span>
-        <span className="text-[#CBD5E1]">/</span>
+        <span className="hover:text-[#0F172A] cursor-pointer transition-colors">
+          {getBreadcrumbs(location.pathname).parent}
+        </span>
+        <span className="text-[#CBD5E1]">&gt;</span>
         <span className="font-medium text-[#0F172A]">
-          {getBreadcrumbTitle(location.pathname)}
+          {getBreadcrumbs(location.pathname).current}
         </span>
       </div>
 

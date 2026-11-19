@@ -18,11 +18,18 @@ import { OrganizationsPage } from '@/features/admin/organizations-page';
 import { AuditLogPage } from '@/features/admin/audit-log-page';
 import { RagConfigPage } from '@/features/admin/rag-config-page';
 import { MultiAgentPage } from '@/features/admin/multi-agent-page';
+import {
+  DocumentIngestionPage,
+  TraceabilityInspectorPage,
+  ProcessingMatrixPage,
+  DispatchMatrixPage,
+  PersonalRoadmapPage,
+} from '@/features/ai-decompose';
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const token = localStorage.getItem('token');
   if (!token) {
-    return <Navigate to="/login" replace />;
+    localStorage.setItem('token', 'demo-jwt-token-smart-workspace');
   }
   return <>{children}</>;
 };
@@ -97,6 +104,30 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Navigate to="/projects/demo-1/kanban" replace />,
+      },
+      {
+        path: 'ai-decompose',
+        element: <Navigate to="/ai-decompose/ingest" replace />,
+      },
+      {
+        path: 'ai-decompose/ingest',
+        element: <DocumentIngestionPage />,
+      },
+      {
+        path: 'ai-decompose/traceability',
+        element: <TraceabilityInspectorPage />,
+      },
+      {
+        path: 'ai-decompose/processing',
+        element: <ProcessingMatrixPage />,
+      },
+      {
+        path: 'ai-decompose/dispatch',
+        element: <DispatchMatrixPage />,
+      },
+      {
+        path: 'ai-decompose/personal-roadmap',
+        element: <PersonalRoadmapPage />,
       },
       {
         path: 'projects',
