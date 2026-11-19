@@ -46,7 +46,7 @@ export const Sidebar: React.FC = () => {
   // 6 mục Quản trị Admin Portal (Frames 01-05B)
   const adminNavItems: NavItemConfig[] = [
     {
-      to: '/admin/monitor',
+      to: '/admin/pulse',
       label: 'Giám Sát Tài Nguyên',
       icon: AppIcons.adminMonitor,
     },
@@ -56,22 +56,22 @@ export const Sidebar: React.FC = () => {
       icon: AppIcons.adminRbac,
     },
     {
-      to: '/teams',
+      to: '/admin/organizations',
       label: 'Tổ Chức & Không Gian',
       icon: AppIcons.adminOrg,
     },
     {
-      to: '/admin/audit',
+      to: '/admin/audit-log',
       label: 'Nhật Ký Audit Log',
       icon: AppIcons.adminAudit,
     },
     {
-      to: '/admin/rag',
+      to: '/admin/rag-config',
       label: 'Thuật Toán & RAG',
       icon: AppIcons.adminRag,
     },
     {
-      to: '/admin/agent',
+      to: '/admin/multi-agent',
       label: 'Multi-Agent & Prompt',
       icon: AppIcons.adminAgent,
     },
