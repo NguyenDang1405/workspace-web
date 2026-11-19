@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { AppIcons } from '@/components/icons/AppIcons';
 import { Button } from '@/components/ui/button';
+import { TaskDetailDrawer } from './task-detail-drawer';
 
 interface KanbanTask {
   id: string;
@@ -141,9 +143,13 @@ const mockColumns: KanbanColumn[] = [
 ];
 
 export const KanbanPage: React.FC = () => {
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const initialTask = searchParams.get('task');
   const [activeFilter, setActiveFilter] = useState<'all' | 'cpm' | 'mine'>('all');
   const [showFsmGuard, setShowFsmGuard] = useState<boolean>(true);
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [selectedTaskId, setSelectedTaskId] = useState<string | null>(initialTask || null);
 
   const handleAcceptTransition = () => {
     setShowFsmGuard(false);
@@ -217,13 +223,35 @@ export const KanbanPage: React.FC = () => {
             </button>
           </div>
 
-          <Button
-            size="sm"
-            className="h-8 rounded-md bg-[#4F46E5] hover:bg-[#4338CA] text-white text-xs font-semibold gap-1.5 shadow-xs"
-          >
-            <AppIcons.plus size={14} />
-            <span>Thêm Công Việc</span>
-          </Button>
+          <div className="flex items-center gap-1.5">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => navigate('/kanban/pr-review/PR-42')}
+              className="h-8 rounded-md border-[#E2E8F0] bg-white text-[#4F46E5] hover:bg-indigo-50 text-xs font-semibold gap-1 shadow-2xs"
+            >
+              <AppIcons.codeDiff size={13} />
+              <span>Thẩm Định PR #42</span>
+            </Button>
+
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => navigate('/kanban/submission/TASK-06')}
+              className="h-8 rounded-md border-[#E2E8F0] bg-white text-emerald-700 hover:bg-emerald-50 text-xs font-semibold gap-1 shadow-2xs"
+            >
+              <AppIcons.docWord size={13} />
+              <span>Nộp Bài #TASK-06</span>
+            </Button>
+
+            <Button
+              size="sm"
+              className="h-8 rounded-md bg-[#4F46E5] hover:bg-[#4338CA] text-white text-xs font-semibold gap-1.5 shadow-xs"
+            >
+              <AppIcons.plus size={14} />
+              <span>Thêm Công Việc</span>
+            </Button>
+          </div>
         </div>
       </div>
 
@@ -312,7 +340,8 @@ export const KanbanPage: React.FC = () => {
                 return (
                   <div
                     key={task.id}
-                    className={`rounded-lg border bg-white p-3 shadow-2xs space-y-2 hover:shadow-xs transition-shadow cursor-grab ${
+                    onClick={() => setSelectedTaskId(task.id)}
+                    className={`rounded-lg border bg-white p-3 shadow-2xs space-y-2 hover:shadow-xs transition-shadow cursor-pointer ${
                       task.isCritical
                         ? 'border-[#FFE4E6] ring-1 ring-[#FFE4E6]'
                         : 'border-[#E2E8F0]'
@@ -461,6 +490,13 @@ export const KanbanPage: React.FC = () => {
           </div>
         </div>
       )}
+
+      {/* Slide-over Drawer Chi Tiết Tác Vụ */}
+      <TaskDetailDrawer
+        isOpen={Boolean(selectedTaskId)}
+        onClose={() => setSelectedTaskId(null)}
+        taskId={selectedTaskId || '#TASK-01'}
+      />
     </div>
   );
 };

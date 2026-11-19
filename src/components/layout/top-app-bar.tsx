@@ -42,6 +42,12 @@ export const TopAppBar: React.FC = () => {
     if (pathname.includes('/backlog') || pathname.includes('/backlog-srs')) {
       return { parent: 'Dự Án Alpha', current: 'Backlog & Phân Cấp WBS' };
     }
+    if (pathname.includes('/kanban/pr-review')) {
+      return { parent: 'Bảng Công Việc (Kanban)', current: 'Chi Tiết Tác Vụ #TASK-01' };
+    }
+    if (pathname.includes('/kanban/submission')) {
+      return { parent: 'Bảng Công Việc (Kanban)', current: 'Nộp Sản Phẩm #TASK-06' };
+    }
     if (pathname.includes('/projects/demo-1/kanban') || pathname.includes('/kanban')) {
       return { parent: 'Dự Án Đang Thực Thi', current: 'Bảng Công Việc (Kanban FSM)' };
     }
