@@ -8,6 +8,7 @@ import { ProjectListPage } from '@/features/projects/project-list-page';
 import { KanbanPage } from '@/features/projects/kanban-page';
 import { TeamListPage } from '@/features/teams/team-list-page';
 import { ProfilePage } from '@/features/profile/profile-page';
+import { SkillEloPage } from '@/features/profile/skill-elo-page';
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const token = localStorage.getItem('token');
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
   {
     path: '/register',
     element: <RegisterPage />,
+  },
+  {
+    path: '/profile/skill-elo',
+    element: <SkillEloPage />,
   },
   {
     path: '/',
@@ -61,6 +66,10 @@ export const router = createBrowserRouter([
       {
         path: 'profile',
         element: <ProfilePage />,
+      },
+      {
+        path: 'profile/skill-elo',
+        element: <SkillEloPage />,
       },
     ],
   },
