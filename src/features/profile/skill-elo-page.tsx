@@ -1,7 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AppIcons, BrandLogoMark } from '@/components/icons/AppIcons';
+import { AppIcons } from '@/components/icons/AppIcons';
 import { Button } from '@/components/ui/button';
+import { AnalyticsSubNav } from '@/components/layout/analytics-sub-nav';
 
 export type EloFilterTab = 'ALL' | 'CORE_PROJECT' | 'CODE_REVIEW';
 
@@ -165,67 +166,13 @@ export const SkillEloPage: React.FC = () => {
   });
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-[#0F172A] flex flex-col font-sans select-none">
-      {/* ======================================================== */}
-      {/* 1. TOP APP BAR                                          */}
-      {/* ======================================================== */}
-      <header className="sticky top-0 z-30 h-14 w-full border-b border-[#E2E8F0] bg-white px-6 flex items-center justify-between">
-        {/* Left: BrandLogoMark + Breadcrumbs */}
-        <div className="flex items-center gap-3">
-          <BrandLogoMark size={28} />
-          <span className="text-[15px] font-bold text-[#0F172A] tracking-tight">Smart Workspace</span>
-          <div className="h-4 w-[1px] bg-[#E2E8F0]" />
-          <div className="flex items-center gap-1.5 text-xs text-[#64748B]">
-            <span
-              onClick={() => navigate('/profile')}
-              className="hover:text-[#0F172A] cursor-pointer transition-colors"
-            >
-              Hồ Sơ Cá Nhân
-            </span>
-            <span className="text-[#CBD5E1]">&gt;</span>
-            <span className="font-semibold text-[#0F172A]">
-              Năng Lực & Xếp Hạng Kỹ Thuật (Skill Elo)
-            </span>
-          </div>
-        </div>
+    <div className="min-h-[calc(100vh-3.5rem)] bg-[#F8FAFC] p-6 text-[#0F172A] space-y-5 select-none font-sans">
+      {/* Sub-Navigation Chuyển Đổi Phân Hệ 6 */}
+      <div className="flex items-center justify-between pb-1">
+        <AnalyticsSubNav />
+      </div>
 
-        {/* Right: Live Tag + CSV Export + User Avatar */}
-        <div className="flex items-center gap-3.5">
-          {/* Refresh 5s tag */}
-          <div className="flex items-center gap-1.5 rounded-md border border-[#E2E8F0] bg-[#F8FAFC] px-2.5 py-1 text-xs text-[#64748B]">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#0D9488] animate-pulse"></span>
-            <span className="font-mono text-[11px] font-medium tracking-tight">Làm mới: 5s</span>
-          </div>
-
-          {/* Export CSV button */}
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => alert('Xuất bảng điểm Skill Elo sang CSV...')}
-            className="h-8 gap-1.5 rounded-md border border-[#E2E8F0] bg-white px-3 text-xs font-medium text-[#0F172A] hover:bg-[#F8FAFC]"
-          >
-            <AppIcons.download size={14} className="text-[#0F172A]" />
-            <span>Xuất CSV</span>
-          </Button>
-
-          <div className="h-4 w-[1px] bg-[#E2E8F0]" />
-
-          {/* User Identity */}
-          <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#0F172A] text-xs font-semibold text-white">
-              ĐN
-            </div>
-            <span className="hidden sm:inline text-xs font-medium text-[#0F172A]">
-              Đặng Hồng Nguyên
-            </span>
-          </div>
-        </div>
-      </header>
-
-      {/* ======================================================== */}
-      {/* 2. MAIN CONTAINER                                       */}
-      {/* ======================================================== */}
-      <main className="flex-1 max-w-7xl w-full mx-auto p-6 space-y-5">
+      <div className="max-w-7xl w-full mx-auto space-y-5">
         {/* ======================================================== */}
         {/* 3. PROFILE HEADER & OVERALL ELO CARD                    */}
         {/* ======================================================== */}
@@ -611,19 +558,7 @@ export const SkillEloPage: React.FC = () => {
             </div>
           </div>
         </div>
-      </main>
-
-      {/* Page Footer */}
-      <footer className="mt-auto border-t border-[#E2E8F0] bg-white py-3 px-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] font-mono text-[#64748B]">
-        <div>Smart Workspace Talent System © 2025</div>
-        <div className="flex items-center gap-4">
-          <span className="hover:text-[#0F172A] cursor-pointer">Skill Elo Matrix</span>
-          <span>•</span>
-          <span className="hover:text-[#0F172A] cursor-pointer">Đánh giá kỹ năng</span>
-          <span>•</span>
-          <span className="hover:text-[#0F172A] cursor-pointer">Lịch sử thi đấu</span>
-        </div>
-      </footer>
+      </div>
     </div>
   );
 };

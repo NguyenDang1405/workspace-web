@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { AppIcons } from '@/components/icons/AppIcons';
 import { Button } from '@/components/ui/button';
+import { AnalyticsSubNav } from '@/components/layout/analytics-sub-nav';
 
 export const DailyStandupPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'standup' | 'studyDigest'>('standup');
@@ -33,6 +34,11 @@ export const DailyStandupPage: React.FC = () => {
 
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-[#F8FAFC] p-6 text-[#0F172A] space-y-5">
+      {/* Sub-Navigation Chuyển Đổi Phân Hệ 6 */}
+      <div className="flex items-center justify-between pb-1">
+        <AnalyticsSubNav />
+      </div>
+
       {/* Thông báo Sync nếu có */}
       {syncStatus && (
         <div className="flex items-center justify-between rounded-lg border border-teal-200 bg-teal-50 px-4 py-2.5 text-xs text-teal-800 shadow-xs animate-in fade-in duration-200">

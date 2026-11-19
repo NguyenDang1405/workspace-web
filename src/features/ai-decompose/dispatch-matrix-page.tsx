@@ -101,7 +101,7 @@ export const DispatchMatrixPage: React.FC = () => {
   });
 
   const handleActivatePlan = () => {
-    navigate('/projects/demo-1/kanban');
+    navigate('/dag-gantt');
   };
 
   return (

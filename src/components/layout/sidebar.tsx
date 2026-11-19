@@ -39,7 +39,7 @@ export const Sidebar: React.FC = () => {
       icon: AppIcons.navBacklogSrs,
     },
     {
-      to: '/profile',
+      to: '/analytics/standup',
       label: 'Hồ Sơ Năng Lực & Báo Cáo',
       icon: AppIcons.navAnalytics,
     },
@@ -81,8 +81,8 @@ export const Sidebar: React.FC = () => {
 
   const isItemActive = (to: string) => {
     const currentPath = location.pathname;
-    if (to === '/profile') {
-      return currentPath.startsWith('/profile') || currentPath.startsWith('/analytics');
+    if (to === '/analytics/standup' || to === '/profile' || to === '/analytics') {
+      return currentPath.startsWith('/analytics') || currentPath.startsWith('/profile');
     }
     if (to === '/ai-decompose') {
       return currentPath.startsWith('/ai-decompose');

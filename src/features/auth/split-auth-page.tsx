@@ -62,9 +62,15 @@ export const SplitAuthPage: React.FC<SplitAuthPageProps> = ({ defaultMode }) => 
           // Fallback authorization demo token
           login('mock-jwt-token-demo');
         }
-        navigate('/projects/demo-1/kanban');
+        if (email.toLowerCase().includes('admin')) {
+          navigate('/admin/pulse');
+        } else {
+          navigate('/kanban');
+        }
       } else {
         // Register flow
+        const targetMode = workspaceType === 'personal' ? 'ACADEMIC' : 'ENTERPRISE';
+        localStorage.setItem('workspace_mode', targetMode);
         try {
           await apiClient.post('/auth/register', {
             fullName,
@@ -76,7 +82,11 @@ export const SplitAuthPage: React.FC<SplitAuthPageProps> = ({ defaultMode }) => 
           // Proceed with demo flow
         }
         login('mock-jwt-token-registered');
-        navigate('/projects/demo-1/kanban');
+        if (workspaceType === 'personal') {
+          navigate('/onboarding/academic');
+        } else {
+          navigate('/onboarding/enterprise');
+        }
       }
     } catch (err: unknown) {
       console.warn('Authentication error:', err);
