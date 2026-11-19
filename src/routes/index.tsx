@@ -5,7 +5,12 @@ import { LoginPage } from '@/features/auth/login-page';
 import { RegisterPage } from '@/features/auth/register-page';
 import { SplitAuthPage } from '@/features/auth/split-auth-page';
 import { ProjectListPage } from '@/features/projects/project-list-page';
-import { KanbanPage } from '@/features/projects/kanban-page';
+import { KanbanPage } from '@/features/kanban/kanban-page';
+import { DagGanttPage } from '@/features/dag-gantt/dag-gantt-page';
+import { AdaptiveCalendarPage } from '@/features/calendar/adaptive-calendar-page';
+import { ConflictMatrixPage } from '@/features/calendar/conflict-matrix-page';
+import { WbsBacklogPage } from '@/features/backlog/wbs-backlog-page';
+import { SrsDiffPage } from '@/features/backlog/srs-diff-page';
 import { TeamListPage } from '@/features/teams/team-list-page';
 import { ProfilePage } from '@/features/profile/profile-page';
 import { AcademicOnboardingPage } from '@/features/onboarding/academic-onboarding-page';
@@ -130,8 +135,12 @@ export const router = createBrowserRouter([
         element: <PersonalRoadmapPage />,
       },
       {
-        path: 'projects',
-        element: <ProjectListPage />,
+        path: 'kanban',
+        element: <KanbanPage />,
+      },
+      {
+        path: 'projects/demo-1/kanban',
+        element: <KanbanPage />,
       },
       {
         path: 'projects/kanban',
@@ -140,6 +149,34 @@ export const router = createBrowserRouter([
       {
         path: 'projects/:projectId/kanban',
         element: <KanbanPage />,
+      },
+      {
+        path: 'dag-gantt',
+        element: <DagGanttPage />,
+      },
+      {
+        path: 'calendar',
+        element: <AdaptiveCalendarPage />,
+      },
+      {
+        path: 'calendar/conflicts',
+        element: <ConflictMatrixPage />,
+      },
+      {
+        path: 'backlog',
+        element: <WbsBacklogPage />,
+      },
+      {
+        path: 'backlog-srs',
+        element: <WbsBacklogPage />,
+      },
+      {
+        path: 'backlog/srs-diff',
+        element: <SrsDiffPage />,
+      },
+      {
+        path: 'projects',
+        element: <ProjectListPage />,
       },
       {
         path: 'teams',

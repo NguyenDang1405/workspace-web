@@ -27,20 +27,23 @@ export const TopAppBar: React.FC = () => {
     if (pathname.includes('/ai-decompose')) {
       return { parent: 'Khởi Tạo & Phân Rã AI', current: 'Nạp Tài Liệu Nguồn' };
     }
-    if (pathname.includes('/projects/demo-1/kanban') || pathname.includes('/kanban')) {
-      return { parent: 'Dự Án', current: 'Bảng Công Việc (Kanban)' };
-    }
-    if (pathname.includes('/projects')) {
-      return { parent: 'Smart Workspace', current: 'Quản Lý Dự Án' };
+    if (pathname.includes('/calendar/conflicts')) {
+      return { parent: 'Lịch Biểu Thích Ứng', current: 'Giải Quyết Xung Đột Lịch (Conflict Matrix)' };
     }
     if (pathname.includes('/calendar')) {
-      return { parent: 'Không Gian Cá Nhân', current: 'Lịch Biểu Thích Ứng' };
+      return { parent: 'Lịch Biểu Thích Ứng', current: 'Lịch Trình AI Tự Động Phân Bổ (Weekly Grid)' };
     }
     if (pathname.includes('/dag-gantt')) {
-      return { parent: 'Kế Hoạch & Tiến Độ', current: 'Đồ Thị Mạng DAG & Gantt' };
+      return { parent: 'Đồ Thị Mạng DAG & Gantt', current: 'Sơ Đồ Đường Găng CPM' };
     }
-    if (pathname.includes('/backlog-srs')) {
-      return { parent: 'Phân Tích Yêu Cầu', current: 'Backlog & Yêu Cầu SRS' };
+    if (pathname.includes('/backlog/srs-diff')) {
+      return { parent: 'Backlog & Yêu Cầu SRS', current: 'Phân Tích Tác Động Thay Đổi (SRS Diff & CPM Impact)' };
+    }
+    if (pathname.includes('/backlog') || pathname.includes('/backlog-srs')) {
+      return { parent: 'Dự Án Alpha', current: 'Backlog & Phân Cấp WBS' };
+    }
+    if (pathname.includes('/projects/demo-1/kanban') || pathname.includes('/kanban')) {
+      return { parent: 'Dự Án Đang Thực Thi', current: 'Bảng Công Việc (Kanban FSM)' };
     }
     if (pathname.includes('/teams')) {
       return { parent: 'Cơ Cấu Đội Ngũ', current: 'Tổ Chức & Không Gian' };
