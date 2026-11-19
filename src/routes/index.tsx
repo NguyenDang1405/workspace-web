@@ -32,6 +32,7 @@ import {
   DispatchMatrixPage,
   PersonalRoadmapPage,
 } from '@/features/ai-decompose';
+import { DailyStandupPage, MonteCarloPage } from '@/features/analytics';
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const token = localStorage.getItem('token');
@@ -199,6 +200,18 @@ export const router = createBrowserRouter([
       {
         path: 'profile/skill-elo',
         element: <SkillEloPage />,
+      },
+      {
+        path: 'analytics',
+        element: <Navigate to="/analytics/standup" replace />,
+      },
+      {
+        path: 'analytics/standup',
+        element: <DailyStandupPage />,
+      },
+      {
+        path: 'analytics/monte-carlo',
+        element: <MonteCarloPage />,
       },
     ],
   },

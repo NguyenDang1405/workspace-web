@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { AppIcons, BrandLogoMark } from '@/components/icons/AppIcons';
 
 interface NavItemConfig {
@@ -9,6 +9,8 @@ interface NavItemConfig {
 }
 
 export const Sidebar: React.FC = () => {
+  const location = useLocation();
+
   // 6 mục điều hướng User Workspace bắt buộc (Frames 09-24)
   const userNavItems: NavItemConfig[] = [
     {
@@ -77,33 +79,54 @@ export const Sidebar: React.FC = () => {
     },
   ];
 
+  const isItemActive = (to: string) => {
+    const currentPath = location.pathname;
+    if (to === '/profile') {
+      return currentPath.startsWith('/profile') || currentPath.startsWith('/analytics');
+    }
+    if (to === '/ai-decompose') {
+      return currentPath.startsWith('/ai-decompose');
+    }
+    if (to === '/kanban') {
+      return (
+        currentPath.startsWith('/kanban') ||
+        currentPath.includes('/kanban')
+      );
+    }
+    if (to === '/calendar') {
+      return currentPath.startsWith('/calendar');
+    }
+    if (to === '/dag-gantt') {
+      return currentPath.startsWith('/dag-gantt');
+    }
+    if (to === '/backlog') {
+      return currentPath.startsWith('/backlog');
+    }
+    return currentPath === to || currentPath.startsWith(`${to}/`);
+  };
+
   const renderNavList = (items: NavItemConfig[]) => (
     <nav className="space-y-1">
       {items.map((item) => {
         const Icon = item.icon;
+        const active = isItemActive(item.to);
         return (
           <NavLink
             key={item.to}
             to={item.to}
-            className={({ isActive }) =>
-              `flex items-center gap-3 px-3 py-2 text-xs transition-all whitespace-nowrap ${
-                isActive
-                  ? 'bg-white border border-[#CBD5E1] rounded-md font-semibold text-[#0F172A] shadow-xs'
-                  : 'text-[#64748B] hover:bg-slate-200/50 hover:text-[#0F172A] rounded-md'
-              }`
-            }
+            className={`flex items-center gap-3 px-3 py-2 text-xs transition-all whitespace-nowrap ${
+              active
+                ? 'bg-white border border-[#CBD5E1] rounded-md font-semibold text-[#0F172A] shadow-xs'
+                : 'text-[#64748B] hover:bg-slate-200/50 hover:text-[#0F172A] rounded-md'
+            }`}
           >
-            {({ isActive }) => (
-              <>
-                <Icon
-                  size={16}
-                  className={`shrink-0 transition-colors ${
-                    isActive ? 'text-[#4F46E5]' : 'text-[#64748B]'
-                  }`}
-                />
-                <span className="truncate">{item.label}</span>
-              </>
-            )}
+            <Icon
+              size={16}
+              className={`shrink-0 transition-colors ${
+                active ? 'text-[#4F46E5]' : 'text-[#64748B]'
+              }`}
+            />
+            <span className="truncate">{item.label}</span>
           </NavLink>
         );
       })}
