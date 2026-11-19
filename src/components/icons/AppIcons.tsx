@@ -74,6 +74,14 @@ import {
   ArrowLeft,
   FileSpreadsheet,
   Bot,
+  Server,
+  Zap,
+  Play,
+  RotateCcw,
+  FolderTree,
+  Sliders,
+  Share2,
+  Unlock,
   type LucideIcon,
   type LucideProps,
 } from 'lucide-react';
@@ -256,6 +264,7 @@ export const AppIcons = {
   userCircle: withDefaultSpec(UserCircle),
   dashboard: withDefaultSpec(LayoutDashboard),
   checkCircle: withDefaultSpec(CheckCircle),
+  checkCircle2: withDefaultSpec(CheckCircle2),
   eye: withDefaultSpec(Eye),
   eyeOff: withDefaultSpec(EyeOff),
   check: withDefaultSpec(Check),
@@ -270,6 +279,14 @@ export const AppIcons = {
   arrowLeft: withDefaultSpec(ArrowLeft),
   fileSpreadsheet: withDefaultSpec(FileSpreadsheet),
   bot: withDefaultSpec(Bot),
+  server: withDefaultSpec(Server),
+  zap: withDefaultSpec(Zap),
+  play: withDefaultSpec(Play),
+  reset: withDefaultSpec(RotateCcw),
+  folderTree: withDefaultSpec(FolderTree),
+  sliders: withDefaultSpec(Sliders),
+  share: withDefaultSpec(Share2),
+  unlock: withDefaultSpec(Unlock),
 } as const;
 
 export type AppIconName = keyof typeof AppIcons;
