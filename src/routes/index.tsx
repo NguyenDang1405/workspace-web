@@ -8,6 +8,8 @@ import { ProjectListPage } from '@/features/projects/project-list-page';
 import { KanbanPage } from '@/features/projects/kanban-page';
 import { TeamListPage } from '@/features/teams/team-list-page';
 import { ProfilePage } from '@/features/profile/profile-page';
+import { AcademicOnboardingPage } from '@/features/onboarding/academic-onboarding-page';
+import { EnterpriseOnboardingPage } from '@/features/onboarding/enterprise-onboarding-page';
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const token = localStorage.getItem('token');
@@ -29,6 +31,14 @@ export const router = createBrowserRouter([
   {
     path: '/register',
     element: <RegisterPage />,
+  },
+  {
+    path: '/onboarding/academic',
+    element: <AcademicOnboardingPage />,
+  },
+  {
+    path: '/onboarding/enterprise',
+    element: <EnterpriseOnboardingPage />,
   },
   {
     path: '/',
