@@ -75,6 +75,7 @@ import {
   FileSpreadsheet,
   Bot,
   Server,
+  Terminal,
   Zap,
   Play,
   RotateCcw,
@@ -265,6 +266,7 @@ export const AppIcons = {
   dashboard: withDefaultSpec(LayoutDashboard),
   checkCircle: withDefaultSpec(CheckCircle),
   checkCircle2: withDefaultSpec(CheckCircle2),
+  calendar: withDefaultSpec(Calendar),
   eye: withDefaultSpec(Eye),
   eyeOff: withDefaultSpec(EyeOff),
   check: withDefaultSpec(Check),
@@ -287,6 +289,7 @@ export const AppIcons = {
   sliders: withDefaultSpec(Sliders),
   share: withDefaultSpec(Share2),
   unlock: withDefaultSpec(Unlock),
+  terminal: withDefaultSpec(Terminal),
 } as const;
 
 export type AppIconName = keyof typeof AppIcons;
