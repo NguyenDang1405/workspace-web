@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { AppIcons } from '@/components/icons/AppIcons';
 import { Button } from '@/components/ui/button';
+import { AnalyticsSubNav } from '@/components/layout/analytics-sub-nav';
 
 export const MonteCarloPage: React.FC = () => {
   const [iterations, setIterations] = useState<number>(10000);
@@ -19,6 +20,11 @@ export const MonteCarloPage: React.FC = () => {
 
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-[#F8FAFC] p-6 text-[#0F172A] space-y-5">
+      {/* Sub-Navigation Chuyển Đổi Phân Hệ 6 */}
+      <div className="flex items-center justify-between pb-1">
+        <AnalyticsSubNav />
+      </div>
+
       {/* Header & Bộ Điều Khiển Mô Phỏng */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>

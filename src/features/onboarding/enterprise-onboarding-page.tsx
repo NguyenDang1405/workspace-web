@@ -564,10 +564,13 @@ export const EnterpriseOnboardingPage: React.FC = () => {
             </Button>
 
             <Button
-              onClick={() => navigate('/projects/demo-1/kanban')}
+              onClick={() => {
+                localStorage.setItem('workspace_mode', 'ENTERPRISE');
+                navigate('/ai-decompose/ingest');
+              }}
               className="h-9 gap-2 text-xs font-semibold bg-[#4F46E5] hover:bg-indigo-700 text-white shadow-xs"
             >
-              <span>Hoàn Tất Thiết Lập & Vào Không Gian</span>
+              <span>Hoàn Tất Thiết Lập &amp; Vào Không Gian</span>
               <AppIcons.arrowRight size={14} />
             </Button>
           </div>

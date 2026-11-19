@@ -37,12 +37,13 @@ import { DailyStandupPage, MonteCarloPage } from '@/features/analytics';
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const token = localStorage.getItem('token');
   if (!token) {
-    localStorage.setItem('token', 'demo-jwt-token-smart-workspace');
+    return <Navigate to="/auth?mode=login" replace />;
   }
   return <>{children}</>;
 };
 
 export const router = createBrowserRouter([
+  // Public / Authentication
   {
     path: '/auth',
     element: <SplitAuthPage />,
@@ -55,6 +56,8 @@ export const router = createBrowserRouter([
     path: '/register',
     element: <RegisterPage />,
   },
+
+  // Onboarding Flow (Không có Left Sidebar, chỉ có Top Stepper)
   {
     path: '/onboarding/academic',
     element: <AcademicOnboardingPage />,
@@ -63,10 +66,8 @@ export const router = createBrowserRouter([
     path: '/onboarding/enterprise',
     element: <EnterpriseOnboardingPage />,
   },
-  {
-    path: '/profile/skill-elo',
-    element: <SkillEloPage />,
-  },
+
+  // Admin Portal Layout (Sidebar 260px riêng cho Quản trị viên)
   {
     path: '/admin',
     element: <AdminLayout />,
@@ -101,6 +102,8 @@ export const router = createBrowserRouter([
       },
     ],
   },
+
+  // User Workspace (app-layout.tsx)
   {
     path: '/',
     element: (
@@ -111,8 +114,10 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Navigate to="/projects/demo-1/kanban" replace />,
+        element: <Navigate to="/kanban" replace />,
       },
+
+      // Phân hệ 1: Khởi Tạo & Phân Rã AI
       {
         path: 'ai-decompose',
         element: <Navigate to="/ai-decompose/ingest" replace />,
@@ -137,6 +142,8 @@ export const router = createBrowserRouter([
         path: 'ai-decompose/personal-roadmap',
         element: <PersonalRoadmapPage />,
       },
+
+      // Phân hệ 2 & Nghiệm Thu: Bảng Công Việc (Kanban)
       {
         path: 'kanban',
         element: <KanbanPage />,
@@ -151,20 +158,18 @@ export const router = createBrowserRouter([
       },
       {
         path: 'projects/demo-1/kanban',
-        element: <KanbanPage />,
+        element: <Navigate to="/kanban" replace />,
       },
       {
         path: 'projects/kanban',
-        element: <KanbanPage />,
+        element: <Navigate to="/kanban" replace />,
       },
       {
         path: 'projects/:projectId/kanban',
-        element: <KanbanPage />,
+        element: <Navigate to="/kanban" replace />,
       },
-      {
-        path: 'dag-gantt',
-        element: <DagGanttPage />,
-      },
+
+      // Phân hệ 3: Lịch Biểu Thích Ứng
       {
         path: 'calendar',
         element: <AdaptiveCalendarPage />,
@@ -173,34 +178,28 @@ export const router = createBrowserRouter([
         path: 'calendar/conflicts',
         element: <ConflictMatrixPage />,
       },
+
+      // Phân hệ 4: Đồ Thị Mạng DAG & Gantt
+      {
+        path: 'dag-gantt',
+        element: <DagGanttPage />,
+      },
+
+      // Phân hệ 5: Backlog & Yêu Cầu SRS
       {
         path: 'backlog',
         element: <WbsBacklogPage />,
       },
       {
         path: 'backlog-srs',
-        element: <WbsBacklogPage />,
+        element: <Navigate to="/backlog" replace />,
       },
       {
         path: 'backlog/srs-diff',
         element: <SrsDiffPage />,
       },
-      {
-        path: 'projects',
-        element: <ProjectListPage />,
-      },
-      {
-        path: 'teams',
-        element: <TeamListPage />,
-      },
-      {
-        path: 'profile',
-        element: <ProfilePage />,
-      },
-      {
-        path: 'profile/skill-elo',
-        element: <SkillEloPage />,
-      },
+
+      // Phân hệ 6: Hồ Sơ Năng Lực & Báo Cáo
       {
         path: 'analytics',
         element: <Navigate to="/analytics/standup" replace />,
@@ -213,10 +212,30 @@ export const router = createBrowserRouter([
         path: 'analytics/monte-carlo',
         element: <MonteCarloPage />,
       },
+      {
+        path: 'profile/skill-elo',
+        element: <SkillEloPage />,
+      },
+      {
+        path: 'profile',
+        element: <Navigate to="/profile/skill-elo" replace />,
+      },
+
+      // Khác
+      {
+        path: 'projects',
+        element: <ProjectListPage />,
+      },
+      {
+        path: 'teams',
+        element: <TeamListPage />,
+      },
     ],
   },
+
+  // Fallback 404
   {
     path: '*',
-    element: <Navigate to="/login" replace />,
+    element: <Navigate to="/auth?mode=login" replace />,
   },
 ]);

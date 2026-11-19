@@ -361,14 +361,15 @@ export const TaskDetailDrawer: React.FC<TaskDetailDrawerProps> = ({
               Cập nhật tự động bởi AI Adaptive Engine • Đồng bộ với Bảng Kanban.
             </span>
 
-            <div className="flex items-center gap-2 self-end sm:self-auto">
+            <div className="flex flex-wrap items-center gap-2 self-end sm:self-auto">
               <Button
                 variant="outline"
                 size="sm"
-                onClick={onClose}
-                className="h-9 text-xs border-[#E2E8F0] text-[#64748B] hover:bg-slate-50"
+                onClick={handleGoToSubmission}
+                className="h-9 text-xs border-[#E2E8F0] text-[#0D9488] hover:bg-teal-50 gap-1.5"
               >
-                Cập Nhật Tiến Độ
+                <AppIcons.fileVerified size={13} />
+                <span>Nộp Sản Phẩm / Báo Cáo</span>
               </Button>
 
               <Button
@@ -376,8 +377,9 @@ export const TaskDetailDrawer: React.FC<TaskDetailDrawerProps> = ({
                 onClick={handleGoToReview}
                 className="h-9 rounded-md bg-[#4F46E5] hover:bg-[#4338CA] text-white text-xs font-semibold gap-1.5 shadow-xs"
               >
-                <span>Chuyển Sang Chờ Duyệt (Review)</span>
-                <AppIcons.arrowRight size={14} />
+                <AppIcons.codeDiff size={13} />
+                <span>Thẩm Định PR (#PR-42)</span>
+                <AppIcons.arrowRight size={13} />
               </Button>
             </div>
           </div>

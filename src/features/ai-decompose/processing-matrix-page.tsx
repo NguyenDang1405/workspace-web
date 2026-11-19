@@ -15,6 +15,15 @@ export const ProcessingMatrixPage: React.FC = () => {
     return () => clearInterval(timer);
   }, []);
 
+  const handleNext = () => {
+    const mode = localStorage.getItem('workspace_mode');
+    if (mode === 'ACADEMIC') {
+      navigate('/ai-decompose/personal-roadmap');
+    } else {
+      navigate('/ai-decompose/dispatch');
+    }
+  };
+
   const handleNextToDispatch = () => {
     navigate('/ai-decompose/dispatch');
   };
@@ -186,10 +195,10 @@ export const ProcessingMatrixPage: React.FC = () => {
             </Button>
 
             <Button
-              onClick={handleNextToDispatch}
+              onClick={handleNext}
               className="h-9 px-4 rounded-md bg-[#4F46E5] hover:bg-[#4338CA] text-white text-xs font-semibold gap-1.5 shadow-xs transition-colors"
             >
-              <span>Chuyển Tiếp Tới Bảng Đối Soát</span>
+              <span>Tiếp Tục Bảng Đối Soát / Lộ Trình</span>
               <AppIcons.arrowRight size={14} />
             </Button>
           </div>
