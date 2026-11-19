@@ -6,6 +6,8 @@ import { RegisterPage } from '@/features/auth/register-page';
 import { SplitAuthPage } from '@/features/auth/split-auth-page';
 import { ProjectListPage } from '@/features/projects/project-list-page';
 import { KanbanPage } from '@/features/kanban/kanban-page';
+import { PrVerificationPage } from '@/features/kanban/pr-verification-page';
+import { AcademicSubmissionPage } from '@/features/kanban/academic-submission-page';
 import { DagGanttPage } from '@/features/dag-gantt/dag-gantt-page';
 import { AdaptiveCalendarPage } from '@/features/calendar/adaptive-calendar-page';
 import { ConflictMatrixPage } from '@/features/calendar/conflict-matrix-page';
@@ -137,6 +139,14 @@ export const router = createBrowserRouter([
       {
         path: 'kanban',
         element: <KanbanPage />,
+      },
+      {
+        path: 'kanban/pr-review/:prId',
+        element: <PrVerificationPage />,
+      },
+      {
+        path: 'kanban/submission/:taskId',
+        element: <AcademicSubmissionPage />,
       },
       {
         path: 'projects/demo-1/kanban',
