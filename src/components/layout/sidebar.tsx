@@ -17,7 +17,7 @@ export const Sidebar: React.FC = () => {
       icon: AppIcons.navAiDecompose,
     },
     {
-      to: '/projects/demo-1/kanban',
+      to: '/kanban',
       label: 'Bảng Công Việc (Kanban)',
       icon: AppIcons.navKanban,
     },
@@ -32,7 +32,7 @@ export const Sidebar: React.FC = () => {
       icon: AppIcons.navDagGantt,
     },
     {
-      to: '/backlog-srs',
+      to: '/backlog',
       label: 'Backlog & Yêu Cầu SRS',
       icon: AppIcons.navBacklogSrs,
     },
