@@ -83,6 +83,7 @@ import {
   Sliders,
   Share2,
   Unlock,
+  Send,
   type LucideIcon,
   type LucideProps,
 } from 'lucide-react';
@@ -290,6 +291,7 @@ export const AppIcons = {
   share: withDefaultSpec(Share2),
   unlock: withDefaultSpec(Unlock),
   terminal: withDefaultSpec(Terminal),
+  send: withDefaultSpec(Send),
 } as const;
 
 export type AppIconName = keyof typeof AppIcons;

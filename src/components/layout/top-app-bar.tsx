@@ -9,6 +9,12 @@ export const TopAppBar: React.FC = () => {
   const { logout } = useAuth();
 
   const getBreadcrumbs = (pathname: string) => {
+    if (pathname.includes('/analytics/standup')) {
+      return { parent: 'Hồ Sơ Năng Lực & Báo Cáo', current: 'Bản Tin Scrum & Tổng Kết Học Tập' };
+    }
+    if (pathname.includes('/analytics/monte-carlo')) {
+      return { parent: 'Hồ Sơ Năng Lực & Báo Cáo', current: 'Mô Phỏng Rủi Ro Monte Carlo & Chỉ Số Flow' };
+    }
     if (pathname.includes('/ai-decompose/ingest')) {
       return { parent: 'Khởi Tạo & Phân Rã AI', current: 'Trung Tâm Nạp Tài Liệu (Document Ingestion Hub)' };
     }
